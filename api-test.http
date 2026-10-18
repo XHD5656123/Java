@@ -1,34 +1,31 @@
+### 查询全部
 GET http://localhost:8080/api/students
 
-###
+### 新增
 POST http://localhost:8080/api/students
 Content-Type: application/json
 
 {
   "name": "李四",
   "age": 22,
-  "email": "list@example.com"
-}
-
-###
-GET http://localhost:8080/api/students
-
-###
-PUT http://localhost:8080/api/students/2
-Content-Type: application/json
-
-{
-  "name": "李四-已修改",
-  "age": 23,
   "email": "lisi@example.com"
 }
 
-###
-GET http://localhost:8080/api/students
+### 查询 ID 为 1 的学生
+GET http://localhost:8080/api/students/1
 
+### 修改 ID 为 1 的学生
+PUT http://localhost:8080/api/students/1
+Content-Type: application/json
 
-###
+{
+  "name": "张三-已修改",
+  "age": 21,
+  "email": "zhangsan@example.com"
+}
+
+### 删除 ID 为 1 的学生
 DELETE http://localhost:8080/api/students/1
 
-###
+### 查询全部，确认删除
 GET http://localhost:8080/api/students
