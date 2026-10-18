@@ -71,5 +71,17 @@ public class StudentController {
         return existingstudent;
     }
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable("id") Long id){
+        Student deletedstudent = students.remove(id);
+
+        if (deletedstudent == null){
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND,"学生不存在"
+            );
+        }
+    }
+
 
 }
