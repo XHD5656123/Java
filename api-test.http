@@ -7,6 +7,19 @@ Content-Type: application/json
 {
   "name": "李四",
   "age": 22,
+  "email": "list@example.com"
+}
+
+###
+GET http://localhost:8080/api/students
+
+###
+PUT http://localhost:8080/api/students/2
+Content-Type: application/json
+
+{
+  "name": "李四-已修改",
+  "age": "23",
   "email": "lisi@example.com"
 }
 

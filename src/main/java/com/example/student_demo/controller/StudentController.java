@@ -54,5 +54,22 @@ public class StudentController {
         return student;
     }
 
+    @PutMapping("/{id}")
+    public Student update(@PathVariable("id") Long id,
+                          @RequestBody Student requestedstudent){
+        Student existingstudent = students.get(id);
+
+        if (existingstudent == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+            "学生不存在");
+        }
+
+        existingstudent.setName(requestedstudent.getName());
+        existingstudent.setEmail(requestedstudent.getEmail());
+        existingstudent.setAge(requestedstudent.getAge());
+
+        return existingstudent;
+    }
+
 
 }
