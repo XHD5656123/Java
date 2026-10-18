@@ -3,14 +3,26 @@ package com.example.student_demo.entity;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 @TableName("student")
 public class Student {
 
     @TableId
     private Long id;
 
+    @NotBlank
     private String name;
+
+
+    @NotNull
+    @Min(1)
     private Integer age;
+
+    @Email
     private String email;
 
     public Long getId() {
