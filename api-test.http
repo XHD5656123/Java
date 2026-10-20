@@ -7,3 +7,9 @@ Content-Type: application/json
   "age": 0,
   "email": "wrong-email"
 }
+
+### 查询不存在的学生，预期 404
+GET http://localhost:8080/api/students/999999
+
+### 删除不存在的学生，预期 404
+DELETE http://localhost:8080/api/students/999999

@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
@@ -37,4 +38,27 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
 
     }
+
+    public ResponseEntity<ErrorResponse> handleResponseStatus(ResponseStatusException exception){
+
+        ErrorResponse response = new ErrorResponse(
+                exception.getStatusCode().value(),
+                exception.getReason()== null ? "请求处理失败" : exception.getReason(),
+                Map.of(),
+                LocalDateTime.now()
+                );
+
+        return ResponseEntity.status(exception.getStatusCode())
+                .body(response);
+    }
+//现在两个处理方法各司其职：
+//参数校验失败
+//→ MethodArgumentNotValidException
+//→ handleValidation()
+//→ HTTP 400 + 字段错误
+//
+//学生不存在
+//→ ResponseStatusException
+//→ handleResponseStatus()
+//→ HTTP 404 + 错误说明
 }
