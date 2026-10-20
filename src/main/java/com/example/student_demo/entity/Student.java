@@ -14,15 +14,15 @@ public class Student {
     @TableId
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "姓名不能为空")
     private String name;
 
 
-    @NotNull
-    @Min(1)
+    @NotNull(message = "年龄姓名不能为空")
+    @Min(value = 1, message = "年龄必须大于 0")
     private Integer age;
 
-    @Email
+    @Email(message = "邮箱格式不正确")
     private String email;
 
     public Long getId() {
